@@ -3,15 +3,16 @@
 #include <stdio.h>
 #include <GL/glut.h>
 
-//GLfloat r1, r2;
 GLUquadric *q;
 GLint n = 1;
 
-int numOfBranches = 0;
-float branchSize[] = { 5, 2, 1 };
-static int counter = 0;
+
+int numOfBranches = 0; //starting value; will increase
+float branchSize[] = { 5, 2, 1 };  //set size of branches called in an array
+static int counter = 0;  //counter corresponds to time
 void Init(void)
 {
+	//this creates the initial cylinder shape
 	glClearColor(1, 1, 1, 1);
 	glShadeModel(GL_FLAT);
 	q = gluNewQuadric();
@@ -64,45 +65,6 @@ void Idle(void) //only makes stump
 	glRotatef(90, 0, 0, 1);
 	glScalef(0.1, 0.1, 0.1);
 
-	//glColor3ub(0, 0, 0);
-
-		//glPushMatrix();
-					  //glTranslatef(-1.1, 0, 0);
-		/*glRotatef(120, 1, 1, 1);
-		//glPushMatrix();
-		//glRotatef(r1, 0, 0, 1); //rotate the main segment
-		glTranslatef(0.5, 0, 0); //translate it to the origin
-		glScalef(0.5, 0.1, 0.1); //scale it
-		glutWireCube(1.f);  //make the cube
-		glScalef(1, 10, 10);  //scale it back
-
-		glTranslatef(0.5, 0, 0); //translate it to the end
-		glRotatef(45, 1, 1, 1);   //rotate the second segment
-		glTranslatef(0.5, 0, 0); //translate it to the origin
-		glScalef(1, 0.1, 0.1); //scale 
-		glutWireCube(1.f);  //and display
-		glPopMatrix();
-
-		
-		glPushMatrix();
-		glLoadIdentity(); //reset
-		//glTranslatef(-1.1, 0, 0);
-		glRotatef(120, 1, 1, 1);
-		glTranslatef(0.5, 0, 0); //translate it to the origin
-		glScalef(0.5, 0.1, 0.1); //scale it
-		//glutWireCube(1.f);  //make the cube
-		glScalef(1, 10, 10);  //scale it back
-
-		glTranslatef(0.5, 0, 0); //translate it to the end
-		glRotatef(-45, 1, 1, 1); //rotate the second segment
-		glTranslatef(0.5, 0, 0); //translate it to the origin
-		glScalef(1, 0.1, 0.1); //scale 
-		glutWireCube(1.f);  //and display
-		glPopMatrix();
-
-	//r1 += 1.1;
-	//r2 += 0;*/
-
 	if (numOfBranches != 7)
 	{
 		counter++;
@@ -112,11 +74,6 @@ void Idle(void) //only makes stump
 			counter = 0;
 		}
 		
-		//counter ++ or counter --
-		//if -- if counter == 0
-		//numof branches += 1 and counter = max
-		//if ++ counter == max
-		//num branches += 1 and counter = 0
 	}
 	srand(2);
 	oneBranching(numOfBranches, branchSize);// Call branching here
@@ -132,40 +89,6 @@ void Reshape(int w, int h)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }
-
-/*void Keyboard(unsigned char key, int x, int y)
-{
-	switch (key) {
-	case '+':
-		for (int i = 0; i < 3; i++)
-		{
-			branchSize[i] = (float)rand() / RAND_MAX*.5 + 1;
-			printf("%f\n", branchSize[i]);
-		}
-			
-		//glutPostRedisplay();
-		break;
-	case '-':
-		///glutPostRedisplay();
-		n--;
-		if (n < 1) {
-			n = 1;
-		}
-		break;
-		/*case 'y':
-		glutPostRedisplay();
-		break;
-		case 'Y':
-		glutPostRedisplay();
-		break;
-	case 27:
-		exit(0);
-		break;
-	default:
-		break;
-	}
-	printf("N=%i\n", n);
-}*/
 
 int main(int argc, char** argv)
 {
